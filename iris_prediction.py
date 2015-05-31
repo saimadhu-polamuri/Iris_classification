@@ -45,18 +45,17 @@ class IrisPrediction():
 
 	def target_data_graph(self,target_data):
 
-		#fig = plt.figure()
+		fig = plt.figure()
 		labels = 'Iris_type-1', 'Iris_type-2', 'Iris_type-3'
-		sizes = list(set(target_data))
+		target_labels = list(set(target_data))
+		target_labels_size = [list(target_data).count(label) for label in target_labels]
 		colors = ['yellowgreen', 'blue', 'red']
-		#explode = (0, 0.1, 0, 0) # only "explode" the 2nd slice (i.e. 'Hogs')
+		plt.pie(target_labels_size,labels=labels, colors=colors,
+        autopct='%1.1f%%', shadow=True, startangle=90)
 
-		plt.pie(sizes, labels=labels, colors=colors)
-		# Set aspect ratio to be equal so that pie is drawn as a circle.
 		plt.axis('equal')
-
-		plt.show()
-		#fig.savefig("target_data.jpg")
+		#plt.show()
+		fig.savefig("target_data.jpg")
 
 	def data_graph(self,x_name,y_name,x_points,y_points,colors_list,title_text,file_name):
 		
@@ -96,7 +95,7 @@ def main():
 	#irisprediction.print_irisdata()
 	dict_values = irisprediction.separate_data()
 	#irisprediction.call_data_graph(dict_values)
-	irisprediction.target_data_graph(dict_values['target'])
+	#irisprediction.target_data_graph(dict_values['target'])
 
 if __name__ == "__main__":
 	main()
